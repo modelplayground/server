@@ -1,6 +1,5 @@
 package com.modelplayground.server.algorithms.persistentranking.domain;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.LocatorEx;
 
 public class LexoRank extends Rank {
 
