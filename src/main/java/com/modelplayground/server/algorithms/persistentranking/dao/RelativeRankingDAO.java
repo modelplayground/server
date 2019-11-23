@@ -2,7 +2,9 @@ package com.modelplayground.server.algorithms.persistentranking.dao;
 
 import com.modelplayground.server.algorithms.persistentranking.domain.Entity;
 import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
-import javafx.util.Pair;
+
+
+import com.modelplayground.server.utils.Pair;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
