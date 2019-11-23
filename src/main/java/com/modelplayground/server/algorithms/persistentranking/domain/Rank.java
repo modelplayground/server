@@ -2,8 +2,8 @@ package com.modelplayground.server.algorithms.persistentranking.domain;
 
 
 public abstract class Rank implements Comparable<Rank> {
-    public abstract void increment(int val);
-    public abstract void decrement(int val);
+    public abstract void increment(long val);
+    public abstract void decrement(long val);
 
 
     @Override

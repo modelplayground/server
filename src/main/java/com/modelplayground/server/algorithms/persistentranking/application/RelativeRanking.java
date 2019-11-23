@@ -3,7 +3,6 @@ package com.modelplayground.server.algorithms.persistentranking.application;
 import com.modelplayground.server.algorithms.persistentranking.dao.RelativeRankingDAO;
 import com.modelplayground.server.algorithms.persistentranking.domain.Entity;
 import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
-import com.modelplayground.server.algorithms.persistentranking.domain.RankManager;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,27 +3,27 @@ package com.modelplayground.server.algorithms.persistentranking.domain;
 import java.util.Objects;
 
 public class IntegerRank extends Rank{
-    private Integer rank;
+    private Long rank;
 
-    public Integer getRank() {
+    public Long getRank() {
         return rank;
     }
 
-    public void setRank(Integer rank) {
+    public void setRank(Long rank) {
         this.rank = rank;
     }
 
-    public IntegerRank(Integer rank) {
+    public IntegerRank(Long rank) {
         this.rank = rank;
     }
 
     @Override
-    public void increment(int val) {
+    public void increment(long val) {
         rank += val;
     }
 
     @Override
-    public void decrement(int val) {
+    public void decrement(long val) {
         rank -= val;
     }
 
@@ -59,6 +59,6 @@ public class IntegerRank extends Rank{
         }
 
         IntegerRank that = (IntegerRank) o;
-        return this.rank - that.rank;
+        return (int)(this.rank - that.rank);
     }
 }

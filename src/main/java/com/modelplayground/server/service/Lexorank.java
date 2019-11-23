@@ -1,10 +1,10 @@
 package com.modelplayground.server.service;
 
 import com.modelplayground.server.algorithms.persistentranking.application.RelativeRanking;
-import com.modelplayground.server.algorithms.persistentranking.domain.IntEntity;
+import com.modelplayground.server.algorithms.persistentranking.domain.DescEntity;
 import com.modelplayground.server.algorithms.persistentranking.domain.IntegerRank;
-import com.modelplayground.server.algorithms.persistentranking.domain.IntegerRankManager;
-import com.modelplayground.server.algorithms.persistentranking.domain.RankManager;
+import com.modelplayground.server.algorithms.persistentranking.application.IntegerRankManager;
+import com.modelplayground.server.algorithms.persistentranking.application.RankManager;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,16 +27,16 @@ public class Lexorank {
     {
 
         IntStream.range(0,10).forEach(i->{
-            IntEntity intEntity = new IntEntity("issue: "+i);
-            relativeRanking.add(intEntity);
+            DescEntity descEntity = new DescEntity("issue: "+i);
+            relativeRanking.add(descEntity);
         });
 
     }
     @RequestMapping("/addissue/{desc}")
     public ResponseEntity addIssue(@PathVariable("desc") String desc){
-        IntEntity intEntity = new IntEntity(desc);
+        DescEntity descEntity = new DescEntity(desc);
 
-        return ResponseEntity.ok(relativeRanking.add(intEntity));
+        return ResponseEntity.ok(relativeRanking.add(descEntity));
     }
 
     @RequestMapping("/move/{from}/{to}")

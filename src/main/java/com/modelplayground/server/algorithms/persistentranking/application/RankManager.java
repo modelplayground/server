@@ -1,4 +1,6 @@
-package com.modelplayground.server.algorithms.persistentranking.domain;
+package com.modelplayground.server.algorithms.persistentranking.application;
+
+import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
 
 public abstract class RankManager<R extends Rank> {
 
@@ -12,8 +14,7 @@ public abstract class RankManager<R extends Rank> {
         this.scheduleRebalancing = scheduleRebalancing;
     }
 
-    protected boolean scheduleRebalancing =false
-            ;
+    protected boolean scheduleRebalancing =false;
 
     public boolean isChangeAllowed() {
         return changeAllowed;
