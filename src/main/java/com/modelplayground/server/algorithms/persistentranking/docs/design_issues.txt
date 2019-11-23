@@ -1,0 +1,3 @@
+1. Overriding functions in Rank for comparing different Subtypes of Rank eg: LexoRank vs IntegeRank
+2. Enforcing consistent use of a single rank type. for eg : something like LexoEntity
+    otherwise we need to add rank in every entity as entity.setRank(new LexoRank()) but it may also be entity.setRank(new IntegerRank())
