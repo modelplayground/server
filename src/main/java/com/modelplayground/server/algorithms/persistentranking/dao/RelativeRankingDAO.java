@@ -1,6 +1,5 @@
 package com.modelplayground.server.algorithms.persistentranking.dao;
 
-import com.modelplayground.server.algorithms.persistentranking.domain.Entity;
 import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
 
 
