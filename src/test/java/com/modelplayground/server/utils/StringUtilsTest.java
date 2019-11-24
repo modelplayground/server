@@ -66,4 +66,12 @@ class StringUtilsTest {
         String res = StringUtils.getLexographicMiddleString(s1,s2);
         assertEquals(res,"aazzzm");
     }
+
+    @Test
+    void getLexographicMiddleString_ConsecutiveCharacterTest4() {
+        String s1 = "yz";
+        String s2 = "zzz";
+        String res = StringUtils.getLexographicMiddleString(s1,s2);
+        assertEquals(res,"zm");
+    }
 }

@@ -1,14 +1,13 @@
 package com.modelplayground.server.service;
 
-import com.modelplayground.server.algorithms.persistentranking.application.LexoRankManager;
+import com.modelplayground.server.algorithms.persistentranking.application.LexoRankMiddleManager;
 import com.modelplayground.server.algorithms.persistentranking.application.RelativeRanking;
 import com.modelplayground.server.algorithms.persistentranking.domain.DescEntity;
 import com.modelplayground.server.algorithms.persistentranking.domain.IntegerRank;
 import com.modelplayground.server.algorithms.persistentranking.application.IntegerRankManager;
 import com.modelplayground.server.algorithms.persistentranking.application.RankManager;
-import com.modelplayground.server.algorithms.persistentranking.domain.LexoRank;
+import com.modelplayground.server.algorithms.persistentranking.domain.LexoRankMiddle;
 import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
-import com.modelplayground.server.utils.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,9 +39,9 @@ public class Lexorank {
     @RequestMapping("/createmanager/{type}/{name}")
     public ResponseEntity createManager(@PathVariable("type") String type,@PathVariable("name") String name) {
         switch(type){
-            case "lexorank":
-                RankManager<LexoRank> lexoRankRankManager = new LexoRankManager();
-                RelativeRanking<LexoRank> lexoRankRelativeRanking = new RelativeRanking<>(lexoRankRankManager);
+            case "lexorankmiddle":
+                RankManager<LexoRankMiddle> lexoRankRankManager = new LexoRankMiddleManager();
+                RelativeRanking<LexoRankMiddle> lexoRankRelativeRanking = new RelativeRanking<>(lexoRankRankManager);
                 managers.put(name,lexoRankRelativeRanking);
                 break;
 
