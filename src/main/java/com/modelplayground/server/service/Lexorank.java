@@ -1,13 +1,7 @@
 package com.modelplayground.server.service;
 
-import com.modelplayground.server.algorithms.persistentranking.application.LexoRankMiddleManager;
-import com.modelplayground.server.algorithms.persistentranking.application.RelativeRanking;
-import com.modelplayground.server.algorithms.persistentranking.domain.DescEntity;
-import com.modelplayground.server.algorithms.persistentranking.domain.IntegerRank;
-import com.modelplayground.server.algorithms.persistentranking.application.IntegerRankManager;
-import com.modelplayground.server.algorithms.persistentranking.application.RankManager;
-import com.modelplayground.server.algorithms.persistentranking.domain.LexoRankMiddle;
-import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
+import com.modelplayground.server.algorithms.persistentranking.application.*;
+import com.modelplayground.server.algorithms.persistentranking.domain.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,10 +33,16 @@ public class Lexorank {
     @RequestMapping("/createmanager/{type}/{name}")
     public ResponseEntity createManager(@PathVariable("type") String type,@PathVariable("name") String name) {
         switch(type){
-            case "lexorankmiddle":
-                RankManager<LexoRankMiddle> lexoRankRankManager = new LexoRankMiddleManager();
-                RelativeRanking<LexoRankMiddle> lexoRankRelativeRanking = new RelativeRanking<>(lexoRankRankManager);
+            case "lexorank":
+                RankManager<LexoRank> lexoRankManager = new LexoRankManager();
+                RelativeRanking<LexoRank> lexoRankRelativeRanking = new RelativeRanking<>(lexoRankManager);
                 managers.put(name,lexoRankRelativeRanking);
+                break;
+
+            case "lexorankmiddle":
+                RankManager<LexoRankMiddle> lexoRankMiddleManager = new LexoRankMiddleManager();
+                RelativeRanking<LexoRankMiddle> lexoRankMiddleRelativeRanking = new RelativeRanking<>(lexoRankMiddleManager);
+                managers.put(name,lexoRankMiddleRelativeRanking);
                 break;
 
             case "integerrank":
@@ -86,7 +86,7 @@ public class Lexorank {
     }
 
 
-    @RequestMapping("{name}/rabalance")
+    @RequestMapping("{name}/rebalance")
     public ResponseEntity rebalance(@PathVariable("name") String name){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
         if(relativeRanking == null ){

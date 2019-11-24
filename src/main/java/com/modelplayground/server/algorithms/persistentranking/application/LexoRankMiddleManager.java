@@ -49,7 +49,7 @@ public class LexoRankMiddleManager extends RankManager<LexoRankMiddle> {
     public LexoRankMiddle getUniformRankForPosition(int pos) {
         if(pos<=0) return null;
         int numOfDigits = 0;
-        long totalSpace = 1;
+        int totalSpace = 1;
         int tmpPos = pos;
         while(tmpPos>0){
             numOfDigits++;
@@ -63,7 +63,7 @@ public class LexoRankMiddleManager extends RankManager<LexoRankMiddle> {
             totalSpace*=div;
             tmpPos/=div;
         }
-        long spacing = (totalSpace-1)/pos;
+        int spacing = (totalSpace-1)/pos;
 
         String endRank =null;
         if(maxAssignedRankVal.length()>numOfDigits){

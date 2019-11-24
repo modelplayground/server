@@ -45,4 +45,63 @@ public class StringUtils {
     }
 
 
+    public static String increment(String s1,int val) {
+        StringBuilder str = new StringBuilder(s1);
+        int i=s1.length()-1;
+        while(val>0){
+            long count = val%26;
+            if('z'-str.charAt(i)>=count){
+                str.setCharAt(i,(char)(str.charAt(i)+count) );
+            }else{
+                if(i-1>=0){
+                    str.setCharAt(i-1,(char)(str.charAt(i-1)+1));
+                    count -= 'z'-str.charAt(i);
+                    str.setCharAt(i,(char)('a'+count-1));
+                }else{
+                    return null;
+                }
+            }
+            i--;
+            val/=26;
+        }
+        return str.toString();
+    }
+
+    public static String decrement(String s1,int val) {
+        StringBuilder str = new StringBuilder(s1);
+        int i=s1.length()-1;
+        while(val>0){
+            long count = val%26;
+            if(str.charAt(i)-'a'>=count){
+                str.setCharAt(i,(char)(str.charAt(i)-count) );
+            }else{
+                if(i-1>=0){
+                    str.setCharAt(i-1,(char)(str.charAt(i-1)-1));
+                    count -= str.charAt(i)-'a';
+                    str.setCharAt(i,(char)('z'-count+1));
+                }else{
+                    return null;
+                }
+            }
+            i--;
+            val/=26;
+        }
+        return str.toString();
+    }
+
+
+    public static Integer calculateSpace(String s1,String s2){
+        int ans = 0;
+        int mul = 1;
+        int idx = s1.length()-1;
+        while(idx>0){
+            int val1= 'z'-s1.charAt(idx);
+            int val2= s2.charAt(idx)-'a';
+            ans+= (val1+val2)*mul;
+            mul*=26;
+            idx--;
+        }
+        ans+=(s2.charAt(idx)-s1.charAt(idx))*mul;
+        return ans;
+    }
 }
