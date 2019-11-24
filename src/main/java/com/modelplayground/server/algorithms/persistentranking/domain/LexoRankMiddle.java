@@ -1,14 +1,17 @@
 package com.modelplayground.server.algorithms.persistentranking.domain;
 
 
+import com.modelplayground.server.utils.StringUtils;
+
 import java.util.Objects;
 
-public class LexoRank extends Rank {
+public class LexoRankMiddle extends Rank {
+
     Integer bucket;
     String marker;
     String rank;
 
-    public LexoRank(Integer bucket, String marker, String rank) {
+    public LexoRankMiddle(Integer bucket, String marker, String rank) {
         this.bucket = bucket;
         this.marker = marker;
         this.rank = rank;
@@ -41,14 +44,25 @@ public class LexoRank extends Rank {
 
 
 
+    public void increment(long val) {
+
+    }
+
+
+    public void decrement(int val) {
+        String str = StringUtils.decrement(this.getRank(),val);
+        this.setRank(str);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LexoRank)) return false;
-        LexoRank lexoRank = (LexoRank) o;
-        return bucket == lexoRank.bucket &&
-                Objects.equals(marker, lexoRank.marker) &&
-                Objects.equals(rank, lexoRank.rank);
+        if (!(o instanceof LexoRankMiddle)) return false;
+        LexoRankMiddle lexoRankMiddle = (LexoRankMiddle) o;
+        return bucket == lexoRankMiddle.bucket &&
+                Objects.equals(marker, lexoRankMiddle.marker) &&
+                Objects.equals(rank, lexoRankMiddle.rank);
     }
 
     @Override
@@ -64,12 +78,12 @@ public class LexoRank extends Rank {
     @Override
     public int compareTo(Rank o) {
         if (this == o) return 0;
-        if (!(o instanceof LexoRank)){
+        if (!(o instanceof LexoRankMiddle)){
             System.out.println("Comparing Different types of ranks !!");
             return -1;
         }
 
-        LexoRank  that = (LexoRank) o;
+        LexoRankMiddle that = (LexoRankMiddle) o;
         return this.toString().compareTo(that.toString());
     }
 }

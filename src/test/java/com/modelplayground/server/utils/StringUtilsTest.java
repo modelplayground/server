@@ -66,4 +66,57 @@ class StringUtilsTest {
         String res = StringUtils.getLexographicMiddleString(s1,s2);
         assertEquals(res,"aazzzm");
     }
+
+    @Test
+    void getLexographicMiddleString_ConsecutiveCharacterTest4() {
+        String s1 = "yz";
+        String s2 = "zzz";
+        String res = StringUtils.getLexographicMiddleString(s1,s2);
+        assertEquals(res,"zm");
+    }
+
+    @Test
+    void incrementTest1() {
+        String str = StringUtils.increment("abbz",4);
+        assertEquals(str,"abcd");
+    }
+    @Test
+    void incrementTest2() {
+        String str = StringUtils.increment("abcc",3);
+        assertEquals(str,"abcf");
+    }
+    @Test
+    void incrementTest3() {
+        String str = StringUtils.increment("abaz",30);
+        assertEquals(str,"abcd");
+    }
+    @Test
+    void incrementTest4() {
+        String str = StringUtils.increment("aazv",60);
+        assertEquals(str,"abcd");
+    }
+
+
+    @Test
+    void decrementTest1() {
+        String str = StringUtils.decrement("abcd",4);
+        assertEquals(str,"abbz");
+    }
+    @Test
+    void decrementTest2() {
+        String str = StringUtils.decrement("abcf",3);
+        assertEquals(str,"abcc");
+    }
+    @Test
+    void decrementTest3() {
+        String str = StringUtils.decrement("abcd",30);
+
+        assertEquals(str,"abaz");
+    }
+    @Test
+    void decrementTest4() {
+        String str = StringUtils.decrement("abcd",60);
+        assertEquals(str,"aazv");
+    }
+
 }

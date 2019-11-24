@@ -17,15 +17,6 @@ public class IntegerRank extends Rank{
         this.rank = rank;
     }
 
-    @Override
-    public void increment(long val) {
-        rank += val;
-    }
-
-    @Override
-    public void decrement(long val) {
-        rank -= val;
-    }
 
 
 
