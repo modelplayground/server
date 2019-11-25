@@ -3,6 +3,7 @@ package com.modelplayground.server.service;
 import com.modelplayground.server.algorithms.persistentranking.application.*;
 import com.modelplayground.server.algorithms.persistentranking.domain.*;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.stream.IntStream;
 @RequestMapping("/lexorank")
 public class Lexorank {
 
+    @CrossOrigin
     @RequestMapping("/hi")
     public ResponseEntity hi(){
         return ResponseEntity.ok("Hi");
