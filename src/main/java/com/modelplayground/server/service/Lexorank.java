@@ -23,6 +23,13 @@ public class Lexorank {
         return ResponseEntity.ok("Hi");
     }
 
+    @CrossOrigin
+    @RequestMapping("/entity")
+    public ResponseEntity getSampleEntity(){
+        SampleResponse sampleResponse = new SampleResponse("Hi");
+        return ResponseEntity.ok(sampleResponse);
+    }
+
 
 
     Map<String, RelativeRanking> managers ;
