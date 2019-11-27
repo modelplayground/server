@@ -14,6 +14,13 @@ public class LexoRank extends Rank {
         this.rank = rank;
     }
 
+    public LexoRank( String rank) {
+        String [] vals= rank.split("|");
+        this.bucket = Integer.parseInt(vals[0]);
+        this.marker = vals[1];
+        this.rank = vals[2];
+    }
+
     public Integer getBucket() {
         return bucket;
     }

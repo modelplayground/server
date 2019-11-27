@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
@@ -70,19 +71,19 @@ public class Lexorank {
             return ResponseEntity.ok("No manager with name : "+name+ " found");
         }
         IntStream.range(0,10).forEach(i->{
-            DescEntity descEntity = new DescEntity("issue: "+i);
-            relativeRanking.add(descEntity);
+            Issue issue = new Issue("issue: "+i);
+            relativeRanking.add(issue);
         });
         return ResponseEntity.ok("added "+count +" issues");
     }
     @RequestMapping("{name}/addissue/{desc}")
     public ResponseEntity addIssue(@PathVariable("name") String name,@PathVariable("desc") String desc){
-        DescEntity descEntity = new DescEntity(desc);
+        Issue issue = new Issue(desc);
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
         if(relativeRanking == null ){
             return ResponseEntity.ok("No manager with name : "+name+ " found");
         }
-        return ResponseEntity.ok(relativeRanking.add(descEntity));
+        return ResponseEntity.ok(relativeRanking.add(issue));
     }
 
     @RequestMapping("/{name}/move/{from}/{to}")
@@ -110,7 +111,7 @@ public class Lexorank {
         if(relativeRanking == null ){
             return ResponseEntity.ok("No manager with name : "+name+ " found");
         }
-        return ResponseEntity.ok(getAllForManager(relativeRanking));
+        return ResponseEntity.ok(getAllForManagerAsList(relativeRanking));
     }
 
     @RequestMapping("/{name}/getalldb")
@@ -119,10 +120,19 @@ public class Lexorank {
         if(relativeRanking == null ){
            return ResponseEntity.ok("No manager with name : "+name+ " found");
         }
-        return ResponseEntity.ok(getAllFromDBForRankManager(relativeRanking));
+        return ResponseEntity.ok(getAllFromDBForRankManagerAsList(relativeRanking));
     }
 
 
+
+    public List<Entity<Rank>> getAllForManagerAsList(RelativeRanking<Rank> relativeRanking){
+        return  relativeRanking.getAllEntityByRank();
+    }
+
+    public List<Entity<Rank>> getAllFromDBForRankManagerAsList(RelativeRanking<Rank> relativeRanking){
+        return relativeRanking.getAllEntityByRankFromDB();
+
+    }
 
 
     public String getAllForManager(RelativeRanking<Rank> relativeRanking){

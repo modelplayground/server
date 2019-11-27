@@ -2,12 +2,14 @@ package com.modelplayground.server.algorithms.persistentranking.application;
 
 import com.modelplayground.server.algorithms.persistentranking.dao.RelativeRankingDAO;
 import com.modelplayground.server.algorithms.persistentranking.domain.Entity;
+import com.modelplayground.server.algorithms.persistentranking.domain.LexoRank;
 import com.modelplayground.server.algorithms.persistentranking.domain.Rank;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class RelativeRanking<R extends Rank> {
 
@@ -92,8 +94,16 @@ public class RelativeRanking<R extends Rank> {
         return this.entities;
     }
 
-    public List<Entity<R>> getAllEntityByRankFromDB() {
-        return this.entities;
+    public List<Entity<Rank>> getAllEntityByRankFromDB() {
+        return this.relativeRankingDAO.getAll()
+                .stream().sorted()
+                .map(p->{
+            Entity<Rank> entity = new Entity();
+            entity.setId(p.getKey());
+            entity.setRank(p.getValue());
+            return entity;
+        })
+                .collect(Collectors.toList());
     }
 
 

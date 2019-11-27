@@ -1,10 +1,10 @@
 package com.modelplayground.server.algorithms.persistentranking.domain;
 
-public class DescEntity<R extends Rank> extends  Entity<R> {
+public class Issue<R extends Rank> extends  Entity<R> {
 
     String desc = "";
 
-    public DescEntity(String desc) {
+    public Issue(String desc) {
         this.desc = desc;
         this.id = desc;
     }
