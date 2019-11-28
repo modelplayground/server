@@ -1,6 +1,6 @@
 package com.modelplayground.server.utils;
 
-public class Pair<K,V> {
+public class Pair<K extends Comparable,V> implements Comparable<Pair>{
     K key;
     V value;
 
@@ -23,5 +23,10 @@ public class Pair<K,V> {
 
     public void setValue(V value) {
         this.value = value;
+    }
+
+    @Override
+    public int compareTo(Pair o) {
+        return this.key.compareTo(o.getKey());
     }
 }
