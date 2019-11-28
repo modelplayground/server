@@ -40,6 +40,7 @@ public class Lexorank {
         managers = new HashMap<>();
     }
 
+    @CrossOrigin
     @RequestMapping("/createmanager/{type}/{name}")
     public ResponseEntity createManager(@PathVariable("type") String type,@PathVariable("name") String name) {
         switch(type){
@@ -64,6 +65,7 @@ public class Lexorank {
         return ResponseEntity.ok(name + " created");
     }
 
+    @CrossOrigin
     @RequestMapping("{name}/addrandomissue/{count}")
     public ResponseEntity addIssue(@PathVariable("name") String name,@PathVariable("count") Integer count){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
@@ -76,6 +78,7 @@ public class Lexorank {
         });
         return ResponseEntity.ok("added "+count +" issues");
     }
+    @CrossOrigin
     @RequestMapping("{name}/addissue/{desc}")
     public ResponseEntity addIssue(@PathVariable("name") String name,@PathVariable("desc") String desc){
         Issue issue = new Issue(desc);
@@ -86,6 +89,7 @@ public class Lexorank {
         return ResponseEntity.ok(relativeRanking.add(issue));
     }
 
+    @CrossOrigin
     @RequestMapping("/{name}/move/{from}/{to}")
     public ResponseEntity move(@PathVariable("name") String name,@PathVariable("from") Integer from,@PathVariable("to") Integer to){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
@@ -95,7 +99,7 @@ public class Lexorank {
         return ResponseEntity.ok(relativeRanking.move(from,to));
     }
 
-
+    @CrossOrigin
     @RequestMapping("{name}/rebalance")
     public ResponseEntity rebalance(@PathVariable("name") String name){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
@@ -105,6 +109,7 @@ public class Lexorank {
         return ResponseEntity.ok(relativeRanking.rebalance());
     }
 
+    @CrossOrigin
     @RequestMapping("/{name}/getall")
     public ResponseEntity getAll(@PathVariable("name") String name){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
@@ -114,6 +119,7 @@ public class Lexorank {
         return ResponseEntity.ok(getAllForManagerAsList(relativeRanking));
     }
 
+    @CrossOrigin
     @RequestMapping("/{name}/getalldb")
     public ResponseEntity getAllDB(@PathVariable("name") String name){
         RelativeRanking relativeRanking = managers.getOrDefault(name,null);
